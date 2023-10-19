@@ -1,0 +1,12 @@
+---
+- name: Copy index.html to Server 1
+  copy:
+    src: server_1/index.html
+    dest: /var/www/html/index.html
+  when: "'web_server_1' in inventory_hostname"
+- name: Copy index2.html to Server 2
+  copy:
+    src: server_2/index.html
+    dest: /var/www/html/index.html
+  when: "'web_server_2' in inventory_hostname"
+
