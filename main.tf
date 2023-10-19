@@ -47,7 +47,7 @@ output "node02_ip" {
 
 # Save IP addresses to local 'inventory' file
 resource "local_file" "inventory" {
-    content = "${tolist(linode_instance.node01.ipv4)[0]}\n${tolist(linode_instance.node02.ipv4)[0]}\n"
+    content = "[web]\nweb_server_1 ansible_host=${tolist(linode_instance.node01.ipv4)[0]}\nweb_server_2 ansible_host=${tolist(linode_instance.node02.ipv4)[0]}\n"
     filename = "${path.module}/inventory"
 }
 
