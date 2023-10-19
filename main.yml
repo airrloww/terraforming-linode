@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: update repository index (Ubuntu)
+      apt:
+        update_cache: yes
+      changed_when: false
+      when: ansible_distribution == "Ubuntu"
+
+  roles:
+    - update_and_upgrade_packages
+    - install_nginx
+    - copy_index_files
